@@ -1,0 +1,125 @@
+{% extends 'todo/base.html' %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8 col-lg-6">
+        <div class="card shadow-sm">
+            <div class="card-body p-4">
+                <h3 class="card-title mb-4">
+                    <i class="bi bi-pencil-square me-2"></i>
+                    {% if form.instance.pk %}Edit Task{% else %}Create New Task{% endif %}
+                </h3>
+                
+                <form method="post">
+                    {% csrf_token %}
+                    
+                    <div class="mb-3">
+                        <label for="{{ form.title.id_for_label }}" class="form-label">
+                            <i class="bi bi-card-heading me-1"></i> Task Title
+                        </label>
+                        {{ form.title }}
+                        {% if form.title.errors %}
+                            <div class="invalid-feedback d-block">
+                                {{ form.title.errors }}
+                            </div>
+                        {% endif %}
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="{{ form.description.id_for_label }}" class="form-label">
+                            <i class="bi bi-text-paragraph me-1"></i> Description
+                        </label>
+                        {{ form.description }}
+                        {% if form.description.errors %}
+                            <div class="invalid-feedback d-block">
+                                {{ form.description.errors }}
+                            </div>
+                        {% endif %}
+                    </div>
+                    
+                    <div class="form-check mb-4">
+                        {{ form.completed }}
+                        <label class="form-check-label" for="{{ form.completed.id_for_label }}">
+                            <i class="bi bi-check-circle me-1"></i> Completed
+                        </label>
+                    </div>
+                    
+                    <div class="d-flex justify-content-between mt-4">
+                        <a href="{% url 'task_list' %}" class="btn btn-outline-secondary">
+                            <i class="bi bi-arrow-left me-1"></i> Back
+                        </a>
+                        <button type="submit" class="btn btn-success">
+                            <i class="bi bi-check-circle me-1"></i> Save Task
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .card {
+        border: none;
+        border-radius: 12px;
+        margin-top: 1rem;
+    }
+    
+    .card-title {
+        color: var(--primary-color);
+        font-weight: 600;
+    }
+    
+    .form-label {
+        font-weight: 500;
+        color: var(--dark-color);
+    }
+    
+    input[type="text"],
+    textarea {
+        width: 100%;
+        padding: 0.75rem;
+        border: 1px solid #ced4da;
+        border-radius: 8px;
+        transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+    
+    input[type="text"]:focus,
+    textarea:focus {
+        border-color: var(--primary-color);
+        box-shadow: 0 0 0 0.25rem rgba(108, 99, 255, 0.25);
+        outline: none;
+    }
+    
+    textarea {
+        min-height: 120px;
+        resize: vertical;
+    }
+    
+    .btn-success {
+        background-color: #28a745;
+        border-color: #28a745;
+        transition: all 0.2s ease;
+    }
+    
+    .btn-success:hover {
+        background-color: #218838;
+        transform: translateY(-1px);
+    }
+    
+    .btn-outline-secondary {
+        transition: all 0.2s ease;
+    }
+    
+    .btn-outline-secondary:hover {
+        background-color: #f8f9fa;
+        transform: translateY(-1px);
+    }
+    
+    .form-check-label {
+        margin-left: 0.5rem;
+        font-weight: 500;
+        color: var(--dark-color);
+    }
+</style>
+{% endblock %}
