@@ -3,7 +3,10 @@
 A simple **To-Do List web application** built with **Django** and **Bootstrap 5**.  
 This project allows users to **add, edit, delete, and toggle tasks** without requiring login/authentication.
 
-![image alt] ()
+![Screenshot](https://github.com/sohagcse07/to_do-list/blob/3301df1a66e8c6698acf008611afcbeca29a303e/Screenshot%20from%202025-09-07%2011-21-45.png)
+
+Screenshot of the To-Do List App
+
 ---
 
 
